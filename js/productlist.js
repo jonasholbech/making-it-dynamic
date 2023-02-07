@@ -1,4 +1,4 @@
-fetch("https://kea-alt-del.dk/t7/api/products")
+fetch("https://kea-alt-del.dk/t7/api/products?brandname=Nike&limit=4")
   .then((res) => res.json())
   .then(showProducts);
 
@@ -8,7 +8,7 @@ function showProducts(products) {
 }
 
 function showProduct(product) {
-  //console.log(product);
+  console.log(product);
   //fang template
   const template = document.querySelector("#smallProductTemplate").content;
   //lav en kopi
@@ -19,6 +19,12 @@ function showProduct(product) {
     //produktet er udsolgt
     copy.querySelector("article").classList.add("soldOut");
   }
+  copy
+    .querySelector(".read-more")
+    .setAttribute("href", `product.html?id=${product.id}`);
+  copy.querySelector(
+    "img"
+  ).src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
   //appende
   document.querySelector("main").appendChild(copy);
 }
